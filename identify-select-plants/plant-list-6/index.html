@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Study cards, quiz and memory game for AHCPCM308 Plant List 6.">
+  <meta name="theme-color" content="#1e3b2f">
+  <title>Plant List 6 · Identify and Select Plants</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='32' fill='%231e3b2f'/%3E%3Cpath d='M18 47c13-4 22-14 27-31M26 37c-8-1-12-5-13-12 8 0 13 4 14 10M35 29c1-8 6-12 14-13-1 8-5 13-13 15' fill='none' stroke='%23d9ef9f' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="../../assets/site.css">
+</head>
+<body class="activity-page">
+  <header class="site-header activity-header">
+    <a class="brand" href="../../index.html">
+      <span class="brand-mark" aria-hidden="true">H</span>
+      <span>Horticulture Revision</span>
+    </a>
+    <a class="header-link" href="../index.html">Identify and Select Plants</a>
+  </header>
+
+  <main class="activity-main">
+    <section class="activity-intro shell">
+      <div>
+        <p class="eyebrow">AHCPCM308 · Plant List 6</p>
+        <h1 id="mode-title">Know the five plants.</h1>
+        <p id="mode-intro">Use the cards to learn the strongest visual cues, plant habit and life cycle.</p>
+      </div>
+      <div class="list-count"><strong>05</strong><span>plants</span></div>
+    </section>
+
+    <nav class="mode-nav shell" aria-label="Choose revision mode" role="tablist">
+      <button class="mode-button" type="button" role="tab" aria-selected="true" aria-controls="study-panel" data-mode="study"><span>01</span> Study</button>
+      <button class="mode-button" type="button" role="tab" aria-selected="false" aria-controls="quiz-panel" data-mode="quiz"><span>02</span> Quiz</button>
+      <button class="mode-button" type="button" role="tab" aria-selected="false" aria-controls="memory-panel" data-mode="memory"><span>03</span> Memory</button>
+    </nav>
+
+    <section class="mode-panel shell" id="study-panel" role="tabpanel">
+      <div class="study-grid" id="study-grid"></div>
+      <p class="source-note">Plant information has been checked against the linked botanical and horticultural sources shown on each card.</p>
+    </section>
+
+    <section class="mode-panel shell" id="quiz-panel" role="tabpanel" hidden>
+      <div class="activity-toolbar">
+        <div><strong id="quiz-count">1 / 20</strong><span>question</span></div>
+        <div><strong id="quiz-score">0</strong><span>correct</span></div>
+        <div class="activity-progress" aria-hidden="true"><span id="quiz-progress"></span></div>
+        <button class="text-button" id="restart-quiz" type="button">Restart</button>
+      </div>
+      <div class="quiz-layout">
+        <article class="quiz-card">
+          <div class="quiz-visual" id="quiz-visual">
+            <img id="quiz-image" src="" alt="">
+            <p id="quiz-clue"></p>
+          </div>
+          <div class="quiz-content">
+            <span class="question-type" id="question-type">Photo identification</span>
+            <h2 id="question-text">Which plant is shown?</h2>
+            <div class="quiz-options" id="quiz-options"></div>
+            <div class="quiz-feedback" id="quiz-feedback" aria-live="polite">Choose the best answer.</div>
+            <button class="button button-primary" id="next-question" type="button" hidden>Next question</button>
+          </div>
+        </article>
+        <aside class="quiz-aside">
+          <span class="module-label">How it works</span>
+          <h3>Twenty mixed questions</h3>
+          <p>Photos, scientific names, common names and identifying features are shuffled each round.</p>
+          <div class="score-display"><strong id="score-large">0</strong><span>/ 20</span></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="mode-panel shell" id="memory-panel" role="tabpanel" hidden>
+      <div class="activity-toolbar">
+        <div><strong id="memory-matches">0 / 5</strong><span>matched</span></div>
+        <div><strong id="memory-moves">0</strong><span>moves</span></div>
+        <div><strong id="memory-time">0:00</strong><span>time</span></div>
+        <div class="activity-progress" aria-hidden="true"><span id="memory-progress"></span></div>
+        <button class="text-button" id="restart-memory" type="button">Shuffle</button>
+      </div>
+      <div class="memory-layout">
+        <div class="memory-board" id="memory-board" aria-label="Plant memory cards"></div>
+        <aside class="memory-note" id="memory-note" aria-live="polite">
+          <span class="module-label">Memory match</span>
+          <h3>Pair each field photo with its scientific name.</h3>
+          <p>Match a pair to reveal its key identifying cue.</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <dialog class="complete-dialog" id="complete-dialog">
+    <div class="dialog-inner">
+      <span class="dialog-mark" aria-hidden="true">✓</span>
+      <p class="eyebrow">Set complete</p>
+      <h2>You matched all five.</h2>
+      <p id="complete-summary"></p>
+      <button class="button button-primary" id="play-again" type="button">Play again</button>
+    </div>
+  </dialog>
+
+  <script src="../../assets/list-6.js"></script>
+</body>
+</html>
