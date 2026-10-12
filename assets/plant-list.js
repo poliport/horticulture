@@ -1,4 +1,4 @@
-const plants = [
+const list6Plants = [
   {
     id: 'hardenbergia',
     scientific: 'Hardenbergia violacea ‘Happy Wanderer’',
@@ -84,6 +84,81 @@ const plants = [
   }
 ];
 
+const list5Plants = [
+  {
+    id: 'doryanthes',
+    scientific: 'Doryanthes palmeri',
+    scientificHtml: '<i>Doryanthes palmeri</i>',
+    common: 'Giant Spear Lily',
+    image: 'assets/doryanthes-palmeri.jpg',
+    alt: 'Large sword-shaped leaves of Giant Spear Lily',
+    habit: 'Large, upright, clumping rosette-forming plant.',
+    cycle: 'Long-lived evergreen perennial.',
+    cue: 'Large sword-shaped leaves form a dense basal rosette. A very tall flowering stem carries red to reddish-brown flowers.',
+    season: 'Flowers mainly in spring.',
+    tags: ['Clumping perennial', 'Native', 'Tall flower spike'],
+    sources: []
+  },
+  {
+    id: 'chorizema',
+    scientific: 'Chorizema cordatum',
+    scientificHtml: '<i>Chorizema cordatum</i>',
+    common: 'Heart-leaf Flame Pea',
+    image: 'assets/chorizema-cordatum.jpg',
+    alt: 'Orange, red and yellow pea flowers of Heart-leaf Flame Pea',
+    habit: 'Small, spreading or scrambling shrub.',
+    cycle: 'Evergreen perennial shrub.',
+    cue: 'Heart-shaped leathery leaves and bright red, orange and yellow pea-shaped flowers.',
+    season: 'Flowers mainly from late winter to spring.',
+    tags: ['Scrambling shrub', 'Native', 'Pea flowers'],
+    sources: []
+  },
+  {
+    id: 'grevillea',
+    scientific: 'Grevillea ‘Moonlight’',
+    scientificHtml: '<i>Grevillea</i> ‘Moonlight’',
+    common: 'Moonlight Grevillea',
+    image: 'assets/grevillea-moonlight.jpg',
+    alt: 'Cream flower cluster and divided foliage of Moonlight Grevillea',
+    habit: 'Large, dense, spreading shrub.',
+    cycle: 'Evergreen perennial shrub.',
+    cue: 'Deeply divided dark-green leaves and large cylindrical cream to pale-yellow flower clusters.',
+    season: 'Flowers for much of the year.',
+    tags: ['Large shrub', 'Native cultivar', 'Cream flowers'],
+    sources: []
+  },
+  {
+    id: 'eremophila',
+    scientific: 'Eremophila hygrophana',
+    scientificHtml: '<i>Eremophila hygrophana</i>',
+    common: 'Blue Emu Bush',
+    image: 'assets/eremophila-hygrophana.jpg',
+    alt: 'Silvery foliage and purple tubular flowers of Blue Emu Bush',
+    habit: 'Small, erect, compact shrub.',
+    cycle: 'Evergreen perennial shrub.',
+    cue: 'Densely branched growth, soft hairy grey to silvery-green leaves and tubular violet-purple flowers.',
+    season: 'Flowers can occur through much of the year.',
+    tags: ['Compact shrub', 'Native', 'Silver foliage'],
+    sources: []
+  },
+  {
+    id: 'mahonia',
+    scientific: 'Mahonia lomariifolia',
+    scientificHtml: '<i>Mahonia lomariifolia</i>',
+    common: 'Mahonia / Chinese Holly',
+    image: 'assets/mahonia-lomariifolia.jpg',
+    alt: 'Long divided leaves of Mahonia or Chinese Holly',
+    habit: 'Upright, medium to large shrub.',
+    cycle: 'Evergreen perennial shrub.',
+    cue: 'Long pinnate leaves with numerous sharply toothed leaflets, yellow flower spikes and blue-black berries.',
+    season: 'Flowers mainly in autumn and winter.',
+    tags: ['Upright shrub', 'Non-native', 'Toothed leaflets'],
+    sources: []
+  }
+];
+
+const plants = document.body.dataset.plantList === '5' ? list5Plants : list6Plants;
+
 const modeCopy = {
   study: ['Know the five plants.', 'Use the cards to learn the strongest visual cues, plant habit and life cycle.'],
   quiz: ['Test your plant recognition.', 'Answer twenty mixed questions. Each round is shuffled.'],
@@ -119,7 +194,7 @@ function renderStudyCards() {
           <div><dt>Look for</dt><dd>${plant.cue}</dd></div>
           <div><dt>Flowering</dt><dd>${plant.season}</dd></div>
         </dl>
-        <div class="plant-sources">${plant.sources.map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener">${label} ↗</a>`).join('')}</div>
+        ${plant.sources.length ? `<div class="plant-sources">${plant.sources.map(([label, url]) => `<a href="${url}" target="_blank" rel="noopener">${label} ↗</a>`).join('')}</div>` : ''}
       </div>`;
     return article;
   }));
