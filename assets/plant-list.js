@@ -247,7 +247,11 @@ const list5Plants = [
   }
 ];
 
-const plants = document.body.dataset.plantList === '5' ? list5Plants : list6Plants;
+const plantListNumber = document.body.dataset.plantList;
+const builtInLists = { 5: list5Plants, 6: list6Plants };
+const plants = window.coursePlantLists?.[plantListNumber] || builtInLists[plantListNumber];
+
+if (!plants) throw new Error(`No plant data found for Plant List ${plantListNumber}.`);
 
 const modeCopy = {
   study: ['Know the five plants.', 'Use the cards to learn the strongest visual cues, plant habit and life cycle.'],
