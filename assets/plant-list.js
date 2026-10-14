@@ -255,7 +255,7 @@ if (!plants) throw new Error(`No plant data found for Plant List ${plantListNumb
 
 const modeCopy = {
   study: ['Know the five plants.', 'Use the cards to learn the strongest visual cues, plant habit and life cycle.'],
-  quiz: ['Test your plant recognition.', 'Answer twenty mixed questions. Each round is shuffled.'],
+  quiz: ['Test your plant recognition.', 'Answer twenty-five mixed questions. Each round is shuffled.'],
   memory: ['Match the plant to its name.', 'Turn over two cards at a time and pair each photograph with its scientific name.']
 };
 
@@ -271,6 +271,13 @@ const shuffle = items => {
 const characteristicsText = plant => plant.characteristics.join(' ');
 const characteristicsList = plant =>
   `<ul class="characteristics-list">${plant.characteristics.map(item => `<li>${item}</li>`).join('')}</ul>`;
+const normalizeScientificName = value => value
+  .toLowerCase()
+  .normalize('NFD')
+  .replace(/[\u0300-\u036f]/g, '')
+  .replace(/[×‘’'".]/g, ' ')
+  .replace(/[^a-z0-9]+/g, ' ')
+  .trim();
 
 function renderStudyCards() {
   const grid = document.querySelector('#study-grid');
@@ -342,6 +349,10 @@ function makeQuizQuestions() {
       type: 'Growth characteristics', visual: 'text', plant,
       clue: characteristicsText(plant), prompt: 'Which plant matches these growth characteristics?',
       answer: plant.scientific, choices: plants.map(item => item.scientific), italic: true
+    },
+    {
+      type: 'Scientific name', visual: 'photo', plant, input: true,
+      prompt: 'Type all or part of the scientific name.', answer: plant.scientific
     }
   ]));
 }
@@ -383,9 +394,25 @@ function renderQuestion() {
     clue.textContent = question.clue;
   }
 
+  const optionsContainer = document.querySelector('#quiz-options');
+  if (question.input) {
+    const form = document.createElement('form');
+    form.className = 'typed-answer-form';
+    form.innerHTML = `
+      <label for="typed-scientific-name">Scientific name</label>
+      <div><input id="typed-scientific-name" name="scientific-name" type="text" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="For example: Salvia or leucantha" required minlength="4"><button class="button button-secondary" type="submit">Check answer</button></div>
+      <small>Enter at least four letters. A genus, species or cultivar name is enough.</small>`;
+    form.addEventListener('submit', event => {
+      event.preventDefault();
+      answerTypedQuestion(form);
+    });
+    optionsContainer.replaceChildren(form);
+    return;
+  }
+
   const options = shuffle(question.choices).slice(0, 4);
   if (!options.includes(question.answer)) options[0] = question.answer;
-  document.querySelector('#quiz-options').replaceChildren(...shuffle(options).map(option => {
+  optionsContainer.replaceChildren(...shuffle(options).map(option => {
     const button = document.createElement('button');
     button.type = 'button';
     button.className = 'quiz-option';
@@ -401,9 +428,6 @@ function answerQuestion(selected, answer) {
   quizAnswered = true;
   const question = quizQuestions[quizIndex];
   const correct = answer === question.answer;
-  if (correct) quizScore++;
-  document.querySelector('#quiz-score').textContent = quizScore;
-  document.querySelector('#score-large').textContent = quizScore;
 
   document.querySelectorAll('.quiz-option').forEach(button => {
     button.disabled = true;
@@ -411,8 +435,36 @@ function answerQuestion(selected, answer) {
   });
   if (!correct) selected.classList.add('incorrect');
 
+  finishQuizAnswer(question, correct);
+}
+
+function answerTypedQuestion(form) {
+  if (quizAnswered) return;
+  const input = form.querySelector('input');
+  const guess = normalizeScientificName(input.value);
+  if (guess.length < 4) {
+    input.setCustomValidity('Enter at least four letters from the scientific name.');
+    input.reportValidity();
+    input.setCustomValidity('');
+    return;
+  }
+
+  quizAnswered = true;
+  const question = quizQuestions[quizIndex];
+  const correct = normalizeScientificName(question.answer).includes(guess);
+  form.classList.add(correct ? 'correct' : 'incorrect');
+  input.disabled = true;
+  form.querySelector('button').disabled = true;
+  finishQuizAnswer(question, correct);
+}
+
+function finishQuizAnswer(question, correct) {
+  if (correct) quizScore++;
+  document.querySelector('#quiz-score').textContent = quizScore;
+  document.querySelector('#score-large').textContent = quizScore;
+
   const feedback = document.querySelector('#quiz-feedback');
-  feedback.innerHTML = `<strong>${correct ? 'Correct.' : `The answer is ${question.answer}.`}</strong>${question.plant.common} · ${characteristicsText(question.plant)}`;
+  feedback.innerHTML = `<strong>${correct ? `Correct: ${question.answer}.` : `The answer is ${question.answer}.`}</strong>${question.plant.common} · ${characteristicsText(question.plant)}`;
   const next = document.querySelector('#next-question');
   next.textContent = quizIndex === quizQuestions.length - 1 ? 'See result' : 'Next question';
   next.hidden = false;
