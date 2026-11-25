@@ -8,8 +8,8 @@ window.coursePlantLists = {
   7: [
     {
       id: 'ceanothus-yankee-point',
-      scientific: 'Ceanothus griseus var. horizontalis ‘Yankee Point’',
-      scientificHtml: '<i>Ceanothus griseus</i> var. <i>horizontalis</i> ‘Yankee Point’',
+      scientific: 'Ceanothus ‘Yankee Point’',
+      scientificHtml: '<i>Ceanothus</i> ‘Yankee Point’',
       common: 'Yankee Point Ceanothus / Californian Lilac',
       image: '../../assets/images/list-7-galleries/ceanothus-yankee-point/02.jpg',
       quizImage: '../../assets/images/list-7-galleries/ceanothus-yankee-point/01.jpg',
@@ -28,13 +28,14 @@ window.coursePlantLists = {
       tags: ['Groundcover shrub', 'Non-native cultivar', 'Blue flower clusters'],
       sources: [
         ['Oregon State University', 'https://landscapeplants.oregonstate.edu/plants/ceanothus-griseus-var-horizontalis-yankee-point'],
-        ['UC Davis cultivar history', 'https://library.ucdavis.edu/wp-content/uploads/2022/02/Ceanothus.pdf']
+        ['UC Davis cultivar history', 'https://library.ucdavis.edu/wp-content/uploads/2022/02/Ceanothus.pdf'],
+        ['Kew — Ceanothus griseus', 'https://powo.science.kew.org/taxon/urn%3Alsid%3Aipni.org%3Anames%3A50698-2']
       ]
     },
     {
       id: 'hebe-blue-gem',
-      scientific: 'Hebe × franciscana ‘Blue Gem’',
-      scientificHtml: '<i>Hebe</i> × <i>franciscana</i> ‘Blue Gem’',
+      scientific: 'Hebe ‘Blue Gem’',
+      scientificHtml: '<i>Hebe</i> ‘Blue Gem’',
       common: 'Blue Gem Hebe',
       image: '../../assets/images/list-7-galleries/hebe-blue-gem/01.jpg',
       quizImage: '../../assets/images/list-7-galleries/hebe-blue-gem/02.jpg',
@@ -82,8 +83,8 @@ window.coursePlantLists = {
     },
     {
       id: 'leucadendron-jester',
-      scientific: 'Leucadendron salignum × laureolum ‘Jester’',
-      scientificHtml: '<i>Leucadendron salignum</i> × <i>laureolum</i> ‘Jester’',
+      scientific: 'Leucadendron ‘Jester’',
+      scientificHtml: '<i>Leucadendron</i> ‘Jester’',
       common: 'Jester Conebush',
       image: '../../assets/images/list-7-galleries/leucadendron-jester/02.jpg',
       quizImage: '../../assets/images/list-7-galleries/leucadendron-jester/01.jpg',
@@ -101,8 +102,8 @@ window.coursePlantLists = {
       season: 'The strongest bract and foliage colour develops from autumn through winter.',
       tags: ['Medium shrub', 'Non-native hybrid', 'Variegated foliage'],
       sources: [
-        ['Proteaflora plant profile', 'https://www.proteaflora.com.au/products/proteaflora-plants-leucadendron-jester'],
-        ['Plantmark plant profile', 'https://www.plantmark.com.au/leucadendron-laureolum-salignum-jester']
+        ['International Proteaceae Cultivar Register', 'https://www.dlrrd.gov.za/images/Branches/AgricProducHealthFoodSafety/Plant%20Production/proteaceae-cultivar-registration/international-proteaceae-cultivar-register/ipcr-march-2022-12-th-edition.pdf'],
+        ['RHS plant profile', 'https://www.rhs.org.uk/plants/360835/leucadendron-jester-v/details']
       ]
     },
     {
